@@ -1,0 +1,127 @@
+/* RESET CSS */
+/*.esta parte del css resetea los valores por defecto que traen los navegadores */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,/*fieldset*/,input,textarea,p,blockquote,th,td { 
+  margin:0;
+  padding:0;
+}
+html,body {
+  margin:0;
+  padding:0;
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+img { 
+  border:0;
+}
+input{
+  border:1px solid #b0b0b0;
+  padding:3px 5px 4px;
+  color:#979797;
+  width:190px;
+}
+address,caption,cite,code,dfn,th,var {
+  font-style:normal;
+  font-weight:normal;
+}
+ol,ul {
+  list-style:none;
+}
+caption,th {
+  text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size:100%;
+  font-weight:normal;
+}
+q:before,q:after {
+  content:'';
+}
+abbr,acronym { border:0;
+}
+* {
+    box-sizing: border-box;
+}
+/* RESET CSS */
+
+body {
+  font-family: sans-serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+#clave {
+  /*background-color: #f0f0f0;*/
+  padding: 0.5rem;
+}
+
+#codificar, #decodificar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.textoResultado {
+  /*background-color: #f0f0f0;*/
+  min-width: 15rem;
+  padding: 1rem;
+}
+
+@media(min-width: 800px) {
+
+  body {
+    font-size: 16px;
+    flex-direction: row;
+  }
+
+  #clave {
+    position: fixed;
+    top: 0px;
+    left: 40vw;
+  }
+
+  #codificar, #decodificar {
+    width: 50vw;
+    height: 100vh;
+  }
+
+}
+
+/*.DARK LIGHT THEMES */
+* {
+  transition: color 0.1s ease-in;
+}
+body, .textoResultado, #clave {
+  transition: background-color 0.1s ease-in;
+}
+body.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+body.dark #clave, body.dark .textoResultado {
+  background-color: #252525;
+}
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+body.light #clave, body.light .textoResultado {
+  background-color: #f0f0f0;
+}
+#switchThemeButton{
+  /*display: none;*/
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 1.5em;
+  height: 1.5em;
+  background: transparent;
+  color: inherit;
+  border: none;
+  border-radius: 20em;
+  cursor: pointer;
+}

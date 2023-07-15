@@ -1,0 +1,72 @@
+<html>
+
+	<head>
+		<title>App Cifrado</title>
+		<meta name="charset" content="utf-8">
+		<meta name="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="./styles.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+		<script src="./scripts.js" type="text/javascript"></script>
+		<link rel="icon" href="https://fav.farm/🔐" />
+	</head>
+
+	<body>
+
+		<button id="switchThemeButton" class="material-symbols-outlined">dark_mode</button>
+
+		<section id="clave">
+			<form>
+				<label>Clave:</label>
+				<input type="text" id="inputClave" name="inputClave" pattern="\s+[a-zA-Z]+"/>
+			</form>
+		</section>
+
+		<section id="codificar">
+
+			<h1>CODIFICAR</h1>
+
+			<div>
+
+				<label>Entrada:</label>
+				<input type="textbox" id="inputCodificar" name="inputCodificar" pattern="\s+[a-zA-Z]+"></input>
+				<button>Dalle!</button>
+
+			</div>
+
+			<div>
+
+				<h2>Resultado:</h2>
+
+				<p class="textoResultado"></p>
+				
+			</div>
+
+		</section>
+
+		<section id="decodificar">
+
+			<h1>DECODIFICAR</h1>
+
+			<div>
+
+				<label>Entrada:</label>
+				<input type="textbox" id="inputDecodificar" name="inputDecodificar" ></input>
+				<button>Dalle a volta!</button>
+
+			</div>
+
+			<div>
+
+				<h2>Resultado:</h2>
+
+				<p class="textoResultado"></p>
+				
+			</div>
+
+		</section>
+
+	</body>
+
+</html>
