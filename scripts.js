@@ -1,14 +1,14 @@
 //LA LETRA Ñ DA PROBLEMAS, HAY QUE REVISAR ESO
-const tablaMadre = [' ','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+const tablaMadre = [' ','A','B','C','D','E','F','G','H','I','J','K','L','M','N','\u00d1','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 const flagCodificar = 0;
 const flagDecodificar = 1;
 
 function algoritmoCifrado(input, clave, flag) {
 
 	// en este array guardamos los códigos de cada char de la string que recibimos como input
-	var inputCodeArray = [];
+	let inputCodeArray = [];
 	// en este array guardamos los códigos de cada char de la string de la clave de cifrado
-	var claveCodeArray = [];
+	let claveCodeArray = [];
 
 	inputCodeArray = stringToArrayDeCodigos(input);
 	if (inputCodeArray == null) {
@@ -22,23 +22,33 @@ function algoritmoCifrado(input, clave, flag) {
 		return;
 	}
 
-	var resultadoCodNum;
-	var resultado;
+	let resultadoCodNum;
+	let resultado;
 
 	switch (flag) {
 
 		case flagCodificar:
-		resultadoCodNum = suma(inputCodeArray, claveCodeArray);
-		resultadoCodNum = transposicionPares(resultadoCodNum);
-		resultadoCodNum = suma(resultadoCodNum, claveCodeArray);
-		resultadoCodNum = transposicionTotal(resultadoCodNum);
-		break;
-
-		case flagDecodificar:
+		// resultadoCodNum = suma(inputCodeArray, claveCodeArray);
+		// resultadoCodNum = transposicionPares(resultadoCodNum);
+		// resultadoCodNum = suma(resultadoCodNum, claveCodeArray);
+		// resultadoCodNum = transposicionTotal(resultadoCodNum);
 		resultadoCodNum = transposicionTotal(inputCodeArray);
 		resultadoCodNum = resta(resultadoCodNum, claveCodeArray);
 		resultadoCodNum = transposicionPares(resultadoCodNum);
-		resultadoCodNum = resta(resultadoCodNum, claveCodeArray);
+		resultadoCodNum = transposicionTotal(inputCodeArray);
+		resultadoCodNum = suma(resultadoCodNum, claveCodeArray);
+		break;
+
+		case flagDecodificar:
+		// resultadoCodNum = transposicionTotal(inputCodeArray);
+		// resultadoCodNum = resta(resultadoCodNum, claveCodeArray);
+		// resultadoCodNum = transposicionPares(resultadoCodNum);
+		// resultadoCodNum = resta(resultadoCodNum, claveCodeArray);
+		resultadoCodNum = resta(inputCodeArray, claveCodeArray);
+		resultadoCodNum = transposicionTotal(resultadoCodNum);
+		resultadoCodNum = transposicionPares(resultadoCodNum);
+		resultadoCodNum = suma(resultadoCodNum, claveCodeArray);
+		resultadoCodNum = transposicionTotal(resultadoCodNum);
 		break;
 
 	}
@@ -52,8 +62,8 @@ function algoritmoCifrado(input, clave, flag) {
 // algoritmo para convertir una string en un array de códigos tomando como referencia tablaMadre
 function stringToArrayDeCodigos(input) {
 
-	var elArray = [];
-	var i = 0;
+	let elArray = [];
+	let i = 0;
 	for (char of input) {
 		elArray[i] = charToNumcodes(char);
 		if (elArray[i] == null) return null;
@@ -67,7 +77,7 @@ function stringToArrayDeCodigos(input) {
 // algoritmo para convertir un char de una string al código correspondiente de tablaMadre
 function charToNumcodes(input) {
 
-	var i = 0;
+	let i = 0;
 	for (char of tablaMadre) {
 		if (input.toUpperCase() == char) return i;
 		i++;
@@ -83,8 +93,8 @@ function suma(input, clave) {
 
 	if (clave.length == 0) return input;
 
-	var resultado = [];
-	var indexClave = 0;
+	let resultado = [];
+	let indexClave = 0;
 
 	for (i = 0; i < input.length; i++) {
 		resultado[i] = input[i] + clave[indexClave];
@@ -102,8 +112,8 @@ function resta(input, clave) {
 
 	if (clave.length == 0) return input;
 
-	var resultado = [];
-	var indexClave = 0;
+	let resultado = [];
+	let indexClave = 0;
 
 	for (i = 0; i < input.length; i++) {
 		resultado[i] = input[i] - clave[indexClave];
@@ -119,9 +129,9 @@ function resta(input, clave) {
 // los datos de entrada deben ser arrays de integers
 function transposicionPares(input) {
 
-	var resultado = [];
-	var a = 0;
-	var b = 1;
+	let resultado = [];
+	let a = 0;
+	let b = 1;
 
 	while (b < input.length) {
 		resultado[a] = input[b];
@@ -140,9 +150,9 @@ function transposicionPares(input) {
 // los datos de entrada deben ser arrays de integers
 function transposicionTotal(input) {
 
-	var resultado = [];
-	var a = 0;
-	var b = input.length - 1;
+	let resultado = [];
+	let a = 0;
+	let b = input.length - 1;
 
 	while (a <= b) {
 		resultado[a] = input[b];
@@ -159,15 +169,15 @@ function transposicionTotal(input) {
 // los datos de entrada deben ser arrays de integers
 function convertirRango(input) {
 
-	var resultado = input;
+	let resultado = input;
 
 	for (i = 0; i < resultado.length; i++) {
 
 		while (resultado[i] >= tablaMadre.length)
-			resultado[i] = resultado[i] - (tablaMadre.length - 1);
+			resultado[i] = resultado[i] - tablaMadre.length;
 
 		while (resultado[i] < 0)
-			resultado[i] = resultado[i] + (tablaMadre.length - 1);
+			resultado[i] = resultado[i] + tablaMadre.length;
 
 	}
 
@@ -179,8 +189,8 @@ function convertirRango(input) {
 // los datos de entrada deben ser arrays de integers
 function numCodesToString(input) {
 
-	var resultado = '';
-	var inputConvertido = convertirRango(input);
+	let resultado = '';
+	let inputConvertido = convertirRango(input);
 
 	for (i = 0; i < inputConvertido.length; i++)
 		resultado += tablaMadre[inputConvertido[i]];
@@ -193,18 +203,18 @@ function numCodesToString(input) {
 
 function codificar() {
 
-	var entrada = $('#inputCodificar').val();
-	var clave = $('#inputClave').val();
-	var resultado = algoritmoCifrado(entrada, clave, flagCodificar);
+	let entrada = $('#inputCodificar').val();
+	let clave = $('#inputClave').val();
+	let resultado = algoritmoCifrado(entrada, clave, flagCodificar);
 	$('#codificar .textoResultado').text(resultado);
 
 }
 
 function decodificar() {
 
-	var entrada = $('#inputDecodificar').val();
-	var clave = $('#inputClave').val();
-	var resultado = algoritmoCifrado(entrada, clave, flagDecodificar);
+	let entrada = $('#inputDecodificar').val();
+	let clave = $('#inputClave').val();
+	let resultado = algoritmoCifrado(entrada, clave, flagDecodificar);
 	$('#decodificar .textoResultado').text(resultado);
 
 }
